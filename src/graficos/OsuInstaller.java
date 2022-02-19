@@ -4,7 +4,7 @@ public class OsuInstaller {
 
     public static void main(final String[] args) {
 
-        final menu menu1 = new menu();
+        final Menu menu1 = new Menu();
         menu1.initWindow();
     }
 }

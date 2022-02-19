@@ -16,23 +16,27 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-class menu extends JFrame implements ActionListener {
+class Menu extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 2191982509771087126L;
     private final JMenuBar menuBar;
-    private final JMenu menu1, menu3;
-    private final JMenuItem menuItem31, menuItem32, menuItem33, menuItem;
-    private final JButton button1, button2, button3;
+    private final JMenuItem menuItem31;
+    private final JMenuItem menuItem32; 
+    private final JMenuItem menuItem33; 
+    private final JMenuItem menuItem;
+    private final JButton button1; 
+    private final JButton button2;
+    private final JButton button3;
     private final Cursor hand = new Cursor(Cursor.HAND_CURSOR);
 
-    public menu() {
+    public Menu() {
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
-        menu1 = new JMenu("Options");
+        JMenu menu1 = new JMenu("Options");
         menuBar.add(menu1);
 
-        menu3 = new JMenu("Color de fondo");
+        JMenu menu3 = new JMenu("Color de fondo");
         menu1.add(menu3);
 
         menuItem31 = new JMenuItem("Negro");
@@ -86,7 +90,7 @@ class menu extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(final ActionEvent e) {
 
-        if (e.getSource() == button1) {
+        if (e.getSource().equals(button1)) {
 
             System.out.println("Opening...\n");
             try {
@@ -111,7 +115,7 @@ class menu extends JFrame implements ActionListener {
 			}
         }
 
-        if (e.getSource() == button2) {
+        if (e.getSource().equals(button2)) {
             class myThread implements Runnable {
                 Thread t;
                 int c;
@@ -187,7 +191,7 @@ class menu extends JFrame implements ActionListener {
             new myThread(commands);
         }
 
-        if (e.getSource() == button3) {
+        if (e.getSource().equals(button3)) {
 
             final String[] commands = { "rm -r $HOME/osu-folder/", "rm $HOME/.local/share/applications/osu.desktop",
                     "rm -r $HOME/.local/share/osu/" };
@@ -240,13 +244,13 @@ class menu extends JFrame implements ActionListener {
             }
         }
 
-        if (e.getSource() == menuItem31) {
+        if (e.getSource().equals(menuItem31)) {
             getContentPane().setBackground(Color.BLACK);
-        } if (e.getSource() == menuItem32) {
+        } if (e.getSource().equals(menuItem32)) {
             getContentPane().setBackground(Color.RED);
-        } if (e.getSource() == menuItem33) {
+        } if (e.getSource().equals(menuItem33)) {
             getContentPane().setBackground(Color.WHITE);
-        } if (e.getSource() == menuItem) {
+        } if (e.getSource().equals(menuItem)) {
             System.exit(0);
         }
 

@@ -10,7 +10,6 @@ import javax.swing.JProgressBar;
 class ProgressBar extends JFrame implements WindowListener {
 	private static final long serialVersionUID = -171014759624138058L;
 	private final JProgressBar jb;
-	private final JLabel jl;
 	private Process p;
 	private boolean flag;
 
@@ -26,7 +25,7 @@ class ProgressBar extends JFrame implements WindowListener {
 		this.jb.setValue(0);
 		this.jb.setStringPainted(true);
 		this.add(jb);
-		this.jl = new JLabel("Descargando...");
+		final JLabel jl = new JLabel("Descargando...");
 		jl.setBounds(65, 10, 300, 30);
 		this.add(jl);
 		this.p = p;
@@ -38,34 +37,22 @@ class ProgressBar extends JFrame implements WindowListener {
 	}
 
 	@Override
-	public void windowOpened(final WindowEvent e) {
-
-	}
+	public void windowOpened(final WindowEvent e) {/*Does nothing*/}
 
 	@Override
-	public void windowClosing(final WindowEvent e) {
-
-	}
+	public void windowClosing(final WindowEvent e) {/*Does nothing*/}
 
 	@Override
-	public void windowIconified(final WindowEvent e) {
-
-	}
+	public void windowIconified(final WindowEvent e) {/*Does nothing*/}
 
 	@Override
-	public void windowDeiconified(final WindowEvent e) {
-
-	}
+	public void windowDeiconified(final WindowEvent e) {/*Does nothing*/}
 
 	@Override
-	public void windowActivated(final WindowEvent e) {
-
-	}
+	public void windowActivated(final WindowEvent e) {/*Does nothing*/}
 
 	@Override
-	public void windowDeactivated(final WindowEvent e) {
-
-	}
+	public void windowDeactivated(final WindowEvent e) {/*Does nothing*/}
 
 	@Override
 	public void windowClosed(WindowEvent e) {
