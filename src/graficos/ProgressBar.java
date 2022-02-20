@@ -69,7 +69,7 @@ class ProgressBar extends JFrame implements WindowListener {
 		
 	}
 	
-	public void setFlag(boolean flag) {
+	private void setFlag(boolean flag) {
 		
 		this.flag = flag;
 		
