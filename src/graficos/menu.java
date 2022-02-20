@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
 class Menu extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 2191982509771087126L;
-    private final JMenuBar menuBar;
     private final JMenuItem menuItem31;
     private final JMenuItem menuItem32; 
     private final JMenuItem menuItem33; 
@@ -30,6 +29,7 @@ class Menu extends JFrame implements ActionListener {
     private final Cursor hand = new Cursor(Cursor.HAND_CURSOR);
 
     public Menu() {
+        final JMenuBar menuBar;
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
@@ -116,79 +116,11 @@ class Menu extends JFrame implements ActionListener {
         }
 
         if (e.getSource().equals(button2)) {
-            class myThread implements Runnable {
-                Thread t;
-                int c;
-                String[] comandos;
-                ProgressBar pb;
-
-                myThread(final String[] comandos) {
-                    t = new Thread(this);
-                    c = 0;
-                    this.comandos = comandos;
-                    t.start();
-                }
-
-                @Override
-                public void run() {
-                        System.out.println("Installing...\n");
-                        try {
-                            for (final String x : comandos) {
-                            	
-                                final Process process = new ProcessBuilder("bash", "-c", x).start();
-                            	if (c == 1 || c == 2) {
-                                    this.pb = new ProgressBar(process);
-                            		this.pb.setVisible(true);
-                            	}
-                                final InputStream inputStream = process.getInputStream();
-
-                                final InputStream errorStream = process.getErrorStream();
-                                                                
-                                BufferedReader br= new BufferedReader(new InputStreamReader(inputStream));
-                                String outputline;
-                                while ( (outputline = br.readLine()) !=null ) {
-                                	
-                                	outputline = outputline.substring(0, outputline.length()-1);
-                                	pb.setprogress(Integer.parseInt(outputline));
-                                	System.out.flush();
-                                	
-                                }
-                                
-                                BufferedReader er = new BufferedReader(new InputStreamReader(errorStream));
-                                String err;
-                                while ( (err = er.readLine()) !=null ) {
-                                	
-                                	System.out.println("Error: " + err);
-                                	System.out.flush();
-                                }
-                                
-                                if (c == 1) {
-                                	this.pb.dispose();
-                                }
-
-                                System.out.println("Process " + c++ + " finished with exit code: " + process.waitFor());
-                                
-                            }
-                        } catch (final IOException e1) {
-                            e1.printStackTrace();
-                        } catch (InterruptedException e2) {
-							e2.printStackTrace();
-						} finally {
-                            if (!this.pb.getFlag()) {
-                                this.pb.dispose();
-                            	JOptionPane.showMessageDialog(null, "Descarga finalizada");
-                            	
-                            }
-                            
-                        }
-                }
-
-            }
             final String[] commands = { "mkdir $HOME/osu-folder",
                     "wget -nc -O $HOME/osu-folder/osu.AppImage https://github.com/ppy/osu/releases/download/2022.205.0/osu.AppImage 2>&1 | grep -Eo -w '[0-9]{1,3}%'",
                     "wget -nc -O $HOME/osu-folder/lazer https://raw.githubusercontent.com/ppy/osu/master/assets/lazer.png 2>&1 | grep -Eo -w '[0-9]{1,3}%'",
                     "cat > $HOME/.local/share/applications/osu.desktop << EOF\n[Desktop Entry]\nType=Application\nTerminal=false\nEncoding=UTF-8\nVersion=2022.205.0\nName=Osu!\nExec=$HOME/osu-folder/osu.AppImage\nCategories=Osu\nIcon=$HOME/osu-folder/lazer.png\nEOF" };
-            new myThread(commands);
+            new MyThread(commands);
         }
 
         if (e.getSource().equals(button3)) {

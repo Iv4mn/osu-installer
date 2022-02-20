@@ -1,3 +1,3 @@
-module firstSteps {
+module osuInstaller {
 	requires java.desktop;
 }
