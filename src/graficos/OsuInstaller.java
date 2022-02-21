@@ -70,7 +70,7 @@ public class OsuInstaller extends OsuOptions implements Runnable {
          e2.printStackTrace();
       } finally {
     	  
-    	  if (pb.getFlag() == false) {
+    	  if (!pb.getFlag()) {
     		  try {
     			super.execCommandRT(new String[] {
     				"bash", "-c", "echo $HOME"	

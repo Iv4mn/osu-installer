@@ -17,17 +17,17 @@ import javax.swing.JOptionPane;
 class Menu extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 2191982509771087126L;
-    private final JMenuItem menuItemNegro;
-    private final JMenuItem menuItemRojo; 
-    private final JMenuItem menuItemBlanco; 
-    private final JMenuItem menuItemSalir;
-    private final JButton botonAbrir; 
-    private final JButton botonDescargar;
-    private final JButton botonDesinstalar;
     private final Cursor hand = new Cursor(Cursor.HAND_CURSOR);
 
     public Menu() {
         final JMenuBar menuBar;
+        final JMenuItem menuItemNegro;
+        final JMenuItem menuItemRojo; 
+        final JMenuItem menuItemBlanco; 
+        final JMenuItem menuItemSalir;
+        final JButton botonAbrir; 
+        final JButton botonDescargar;
+        final JButton botonDesinstalar;
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
