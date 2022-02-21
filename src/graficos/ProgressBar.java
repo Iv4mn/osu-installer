@@ -58,7 +58,7 @@ class ProgressBar extends JFrame implements WindowListener {
 	public void windowClosed(WindowEvent e) {
 		
 		p.destroyForcibly();
-		
+		System.out.println("hola lol");
 		setFlag(true);
 
 	}

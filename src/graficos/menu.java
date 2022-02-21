@@ -17,13 +17,13 @@ import javax.swing.JOptionPane;
 class Menu extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 2191982509771087126L;
-    private final JMenuItem menuItem31;
-    private final JMenuItem menuItem32; 
-    private final JMenuItem menuItem33; 
-    private final JMenuItem menuItem;
-    private final JButton button1; 
-    private final JButton button2;
-    private final JButton button3;
+    private final JMenuItem menuItemNegro;
+    private final JMenuItem menuItemRojo; 
+    private final JMenuItem menuItemBlanco; 
+    private final JMenuItem menuItemSalir;
+    private final JButton botonAbrir; 
+    private final JButton botonDescargar;
+    private final JButton botonDesinstalar;
     private final Cursor hand = new Cursor(Cursor.HAND_CURSOR);
 
     public Menu() {
@@ -37,40 +37,59 @@ class Menu extends JFrame implements ActionListener {
         JMenu menu3 = new JMenu("Color de fondo");
         menu1.add(menu3);
 
-        menuItem31 = new JMenuItem("Negro");
-        menu3.add(menuItem31);
-        menuItem31.addActionListener(this);
+        menuItemNegro = new JMenuItem("Negro");
+        menu3.add(menuItemNegro);
+        menuItemNegro.addActionListener(evt -> getContentPane().setBackground(Color.BLACK));
 
-        menuItem32 = new JMenuItem("Rojo");
-        menu3.add(menuItem32);
-        menuItem32.addActionListener(this);
+        menuItemRojo = new JMenuItem("Rojo");
+        menu3.add(menuItemRojo);
+        menuItemRojo.addActionListener(evt -> getContentPane().setBackground(Color.RED));
 
-        menuItem33 = new JMenuItem("Blanco");
-        menu3.add(menuItem33);
-        menuItem33.addActionListener(this);
+        menuItemBlanco = new JMenuItem("Blanco");
+        menu3.add(menuItemBlanco);
+        menuItemBlanco.addActionListener(evt -> getContentPane().setBackground(Color.WHITE));
 
-        menuItem = new JMenuItem("Salir");
-        menu1.add(menuItem);
-        menuItem.addActionListener(this);
+        menuItemSalir = new JMenuItem("Salir");
+        menu1.add(menuItemSalir);
+        menuItemSalir.addActionListener(evt -> System.exit(0));
 
-        button1 = new JButton("Abrir osu!lazer");
-        button1.setCursor(hand);
-        add(button1);
-        button1.addActionListener(this);
+        botonAbrir = new JButton("Abrir osu!lazer");
+        botonAbrir.setCursor(hand);
+        add(botonAbrir);
+        botonAbrir.addActionListener(evt -> {
+        	
+        	try {
+				new OsuOpen();
+			} catch (IOException | InterruptedException e) {
+				e.printStackTrace();
+			}
+        	
+        });
 
-        button2 = new JButton("Descargar osu!lazer");
-        button2.setCursor(hand);
-        add(button2);
-        button2.addActionListener(this);
+        botonDescargar = new JButton("Descargar osu!lazer");
+        botonDescargar.setCursor(hand);
+        add(botonDescargar);
+        botonDescargar.addActionListener(evt -> {
+        	
+        	new OsuInstaller();
+        	
+        });
 
-        button3 = new JButton("Desinstalar osu!lazer");
-        button3.setCursor(hand);
-        add(button3);
-        button3.addActionListener(this);
+        botonDesinstalar = new JButton("Desinstalar osu!lazer");
+        botonDesinstalar.setCursor(hand);
+        add(botonDesinstalar);
+        botonDesinstalar.addActionListener(evt -> {
+			try {
+				new UninstallOsu(JOptionPane.showConfirmDialog(null, "¿Quieres borrar todos tus datos?", "Desinstalar osu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE));
+			} catch (HeadlessException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
 
-        button1.setBounds(80, 10, 200, 50);
-        button2.setBounds(370, 10, 200, 50);
-        button3.setBounds(650, 10, 200, 50);
+        botonAbrir.setBounds(80, 10, 200, 50);
+        botonDescargar.setBounds(370, 10, 200, 50);
+        botonDesinstalar.setBounds(650, 10, 200, 50);
 
     }
 
@@ -86,42 +105,5 @@ class Menu extends JFrame implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(final ActionEvent e) {
-        if (e.getSource().equals(button1)) {
-        	try {
-				new OsuOpen();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}
-        }
-        if (e.getSource().equals(button2)) {
-        	new OsuInstaller();
-        }
-        if (e.getSource().equals(button3)) {
-        	
-        	try {
-				new UninstallOsu(
-						JOptionPane.showConfirmDialog(null, "¿Quieres eliminar tus datos de usuario?", "Desinstalar osu",
-						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)
-						);
-			} catch (HeadlessException | IOException e1) {
-				e1.printStackTrace();
-			}
-        	
-        }
-        if (e.getSource().equals(menuItem31)) {
-            getContentPane().setBackground(Color.BLACK);
-        } 
-        if (e.getSource().equals(menuItem32)) {
-            getContentPane().setBackground(Color.RED);
-        } 
-        if (e.getSource().equals(menuItem33)) {
-            getContentPane().setBackground(Color.WHITE);
-        } 
-        if (e.getSource().equals(menuItem)) {
-            System.exit(0);
-        }
-    }
+    public void actionPerformed(final ActionEvent e) {}
 }

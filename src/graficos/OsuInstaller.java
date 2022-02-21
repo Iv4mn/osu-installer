@@ -70,10 +70,19 @@ public class OsuInstaller extends OsuOptions implements Runnable {
          e2.printStackTrace();
       } finally {
     	  
-    	  if (!pb.getFlag()) {
-    		  
+    	  if (pb.getFlag() == false) {
+    		  try {
+    			super.execCommandRT(new String[] {
+    				"bash", "-c", "echo $HOME"	
+    			});
+    			String input = super.getInputCommand();
+				super.execCommandRT(new String[] {
+						  "bash", "-c", "chmod", "+x", input+"osu-folder/osu.AppImage"
+				  });
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
     		  JOptionPane.showMessageDialog(null, "Descarga finalizada");
-    		  
     	  }
     	  
       }
