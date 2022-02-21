@@ -3,8 +3,6 @@ package graficos;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.HeadlessException;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JButton;
@@ -14,7 +12,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-class Menu extends JFrame implements ActionListener {
+class Menu extends JFrame {
 
     private static final long serialVersionUID = 2191982509771087126L;
     private final Cursor hand = new Cursor(Cursor.HAND_CURSOR);
@@ -103,7 +101,4 @@ class Menu extends JFrame implements ActionListener {
         setVisible(true);
 
     }
-
-    @Override
-    public void actionPerformed(final ActionEvent e) {}
 }
